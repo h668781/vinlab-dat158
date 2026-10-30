@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="nn">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Utforsk korleis ein trena random forest estimerer vinkvalitet frå kjemiske målingar.">
+  <title>Vinlab · Vinkvalitet med maskinlæring</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="inference.js" defer></script><script src="app.js" defer></script>
+</head>
+<body>
+<header><a class="brand" href="#">vinlab<span>●</span></a><span>DAT158 / MASKINLÆRING</span><a href="#om">Om modellen ↗</a></header>
+<main>
+  <section class="intro"><div class="eyebrow">FRÅ KJEMI TIL KVALITET</div><h1>Kva seier målingane<br>om vinen?</h1><p>Gi modellen elleve kjemiske målingar. Få eit estimat på korleis ein raud Vinho Verde-vin kan bli vurdert av eit smakspanel.</p><div class="tags"><span>Raudvin</span><span>Random forest</span><span>UCI Wine Quality</span></div></section>
+  <section class="workspace" aria-label="Prøv modellen">
+    <form id="wine-form"><div class="section-top"><div><div class="eyebrow">01 / MÅLINGANE DINE</div><h2>Legg inn ein vin</h2></div><button type="button" id="reset" class="quiet">Nullstill ↺</button></div>
+      <p class="hint">Felta er fylte med medianar frå treningsdataa. Bruk eigne laboratoriemålingar, eller utforsk ved å endre verdiane.</p>
+      <div id="fields" class="fields"></div><p id="range-note" class="hint">Dei viste intervalla er frå treningsdataa.</p>
+      <button id="submit" class="primary" type="submit" disabled>Lastar modellen …</button><p id="form-error" role="alert"></p>
+    </form>
+    <aside class="result-panel" aria-label="Modellresultat"><div class="eyebrow">02 / MODELLEN SITT ESTIMAT</div><div id="result" aria-live="polite"><div class="score"><span id="score">—</span><span class="out-of">/ 10</span></div><p id="result-label">Klar når du er</p><div class="scale"><div id="marker"></div></div><div class="scale-labels"><span>0 · låg kvalitet</span><span>10 · høg kvalitet</span></div><p id="result-description">Trykk på «Estimer kvalitet» for å prøve den trena modellen.</p></div>
+      <div class="result-detail"><span>Gjennomsnittleg testfeil</span><strong id="mae">—</strong><p>Absolutt feil i kvalitetspoeng. Dette er eit gjennomsnitt, ikkje eit konfidensintervall for denne vinen.</p></div>
+      <p id="warning" role="status"></p><p class="small">Eit læringsprosjekt om smaksvurderingar. Estimatet seier ikkje noko om tryggleik, pris eller helseeffekt.</p>
+    </aside>
+  </section>
+  <section id="om" class="about"><div><div class="eyebrow">03 / BAK RESULTATET</div><h2>Ein liten modell.<br>Ei heil arbeidsflyt.</h2><p>Dataa blir rensa og delte før trening. Ein median-baseline, ridge-regresjon, beslutningstrær og random forests blir samanlikna på valideringsdata. Modellen med lågast MAE blir testa på eit eige testsett.</p><p>Treninga skjer i Python. Den ferdigtrena modellen køyrer lokalt i nettlesaren din. Målingane dine blir ikkje sende til ein prediksjonsserver.</p><a href="evaluation.json">Sjå alle målte resultat ↗</a></div><div class="facts"><article><strong id="rows">—</strong><span>unike observasjonar etter rensing</span></article><article><strong>60 / 20 / 20</strong><span>trening / validering / test</span></article><article><strong id="within">—</strong><span>av testestimata var innanfor eitt poeng</span></article></div></section>
+  <section class="limits"><h2>Kva modellen ikkje veit</h2><p>Dataa kjem frå portugisisk Vinho Verde og inneheld flest vinar med kvalitet 5 og 6. Resultata kan vere svakare for sjeldne kvalitetar, andre vinregionar og kombinasjonar av målingar modellen ikkje har sett før. Å endre eit felt viser korleis modellen reagerer; det beviser ikkje ein årsakssamanheng.</p></section>
+</main><footer><span>vinlab · DAT158-prosjekt · Utvikla med AI-hjelp</span><a href="https://archive.ics.uci.edu/dataset/186/wine+quality">Data: Cortez mfl. (2009) · CC BY 4.0 ↗</a></footer>
+</body></html>
